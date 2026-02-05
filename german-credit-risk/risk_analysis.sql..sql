@@ -1,13 +1,8 @@
--- MISSION 14: Find "Popular" Loan Categories (More than 300 loans)
-SELECT Duration,
-CASE
-WHEN Duration < 12 THEN "Short Term"
-WHEN Duration > 24 THEN "Long Term"
- ELSE "Middle Term"
-END AS "Duration_category",
-COUNT(*) AS "Total_loans"
+-- MISSION 15: HIGH VALUE RISK REPORT
+-- Finding Job Sectors (Men) with > 1 Million DM in Debt
+SELECT Job, SUM("Credit amount") AS Total_Debt
 FROM loans_clean
-GROUP BY "Duration_category"
-HAVING Total_loans > 300;
-
-
+WHERE Sex = 'male'
+GROUP BY Job
+HAVING Total_Debt > 1000000
+ORDER BY Total_Debt DESC;
