@@ -1,8 +1,6 @@
--- MISSION 15: HIGH VALUE RISK REPORT
--- Finding Job Sectors (Men) with > 1 Million DM in Debt
-SELECT Job, SUM("Credit amount") AS Total_Debt
+-- MISSION 16: Analyze Housing Risks for Wealthy Clients
+-- Note: Column name is "Saving accounts" (No 's' on Saving)
+SELECT Housing, AVG("Credit amount") AS Avg_Loan_Size
 FROM loans_clean
-WHERE Sex = 'male'
-GROUP BY Job
-HAVING Total_Debt > 1000000
-ORDER BY Total_Debt DESC;
+WHERE "Saving accounts" LIKE '%rich%'
+GROUP BY Housing;
