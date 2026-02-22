@@ -1,12 +1,6 @@
--- MISSION 17: Student Loan Risk Analysis
--- Finding the breakdown of Good (1) vs Bad (2) risks for Education
-SELECT "Credit Risk", COUNT(*) AS Total_Students
+-- MISSION 19: The "Inception" Query (Subqueries)
+-- Finding all loans that are above the global average
+SELECT "Credit amount", Job, Purpose
 FROM loans_clean
-WHERE Purpose = 'education'
-GROUP BY "Credit Risk"
-ORDER BY Total_Students DESC;
-SELECT "Credit Risk", COUNT(*) AS Total_Students
-FROM loans_clean
-WHERE Purpose = 'education'
-GROUP BY "Credit Risk"
-ORDER BY Total_Students DESC;
+WHERE "Credit amount" > (SELECT AVG("Credit amount") FROM loans_clean)
+ORDER BY "Credit amount" ASC;
